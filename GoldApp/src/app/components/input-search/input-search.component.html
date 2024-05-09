@@ -1,0 +1,23 @@
+<form [formGroup]="filterForm" (ngSubmit)="sendMessage()">
+    <div class="row justify-content-center">
+        <div class="col-sm-3 mx-1 my-1">
+            <label for="search" class="form-label labelInput">Buscar Gif</label>
+            <div class="input-group">
+                <input type="text" class="form-control" formControlName="search" placeholder="Search"
+                    aria-label="search" aria-describedby="search">
+                <button class="btn btn-primary" type="submit" id="search">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+            <span *ngIf="filterForm.controls['search'].getError('pattern') && 
+              filterForm.controls['search'].touched" class="form-text text-danger">
+                Caracteres inválidos
+            </span>
+        </div>
+        <div class="col-sm-3  mx-1 my-1">
+            <label for="limit" class="form-label labelInput">Limite a mostrar</label>
+            <input type="number" (ngModelChange)="sendMessage()" formControlName="limit" class="form-control" id="limit"
+                placeholder="Limit">
+        </div>
+    </div>
+</form>

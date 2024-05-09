@@ -12,14 +12,13 @@ export class GifService {
         this.baseUrl = environment.baseUrl;
         this.apiKey = environment.apiKey;
     }
-    getListGifs(nameGif: string, limitPage: number, rating: string): Observable<any> {
-        // Crear los parámetros
+    getListGifs(filter: any): Observable<any> {
         let params = new HttpParams()
             .set('api_key', this.apiKey)
-            .set('q', nameGif)
-            .set('limit', limitPage)
+            .set('q', filter.nameGif)
+            .set('limit', filter.limitPage)
             .set('offset', 0)
-            .set('rating', rating)
+            .set('rating', 'r')
             .set('lang', 'en')
             .set('bundle', 'messaging_non_clips');
         return this.http.get(`${this.baseUrl}search`, { params: params });

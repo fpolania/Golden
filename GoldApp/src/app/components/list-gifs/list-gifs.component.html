@@ -1,0 +1,16 @@
+<div class="container mt-3">
+    <app-input-search (messageToParent)="receiveMessage($event)"></app-input-search>
+    <div class="row">
+        <div class="col-sm-4 mt-4"
+            *ngFor="let item of this.listGifs.data  | paginate: { itemsPerPage: 6, currentPage: currentPage}">
+            <div class="card" style="width: 18rem; height: 20rem;">
+                <img [src]="item.images.original.url" class="card-img" alt="..." width="100%" height="100%">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-5 paginator">
+        <pagination-controls style="margin-top: 10px;"
+         (pageChange)="currentPage = $event" previousLabel="Previo"
+            nextLabel="Siguiente"></pagination-controls>
+    </div>
+</div>
