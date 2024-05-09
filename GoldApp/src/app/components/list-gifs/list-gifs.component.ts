@@ -11,7 +11,7 @@ export class ListGifsComponent implements OnInit {
   listGifs: GiphyData;
   receivedMessage: any;
   showAlert: AlertSwal;
-  currentPage: number = 1; 
+  currentPage: number = 1;
   constructor(private gifService: GifService) {
     this.receivedMessage = {
       nameGif: 'ALL',
@@ -32,7 +32,7 @@ export class ListGifsComponent implements OnInit {
       next: (rs: GiphyData) => {
         this.listGifs.pagination = rs.pagination;
         this.listGifs.data = rs.data;
-        console.log(this.listGifs.data)
+        this.currentPage = this.listGifs.data.length <= 6 ? 1 : this.currentPage;
         if (this.listGifs.data.length === 0) {
           return this.showAlert.showAlertSuccess('success', 'No hay datos para mostrar');
         }
@@ -41,5 +41,4 @@ export class ListGifsComponent implements OnInit {
       }
     });
   }
-
 }
