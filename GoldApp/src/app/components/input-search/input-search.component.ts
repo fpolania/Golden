@@ -24,7 +24,8 @@ export class InputSearchComponent implements OnInit {
     const objectFilter = {
       nameGif: this.filterForm.controls["search"].value === "" ? 'ALL'
         : this.filterForm.controls["search"].value,
-      limitPage: this.filterForm.controls["limit"].value
+      limitPage: this.filterForm.controls["limit"].value === null ? 25 
+      : this.filterForm.controls["limit"].value
     }
     this.messageToParent.emit(objectFilter);
   }
